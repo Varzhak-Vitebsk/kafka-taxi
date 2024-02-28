@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: taxi-facade
+  jackson:
+    default-property-inclusion: non_null
+  codec:
+    max-in-memory-size: 1048576
+    max-request-size: 4400390
+
+logging:
+  level:
+    com.epam: ${LOGGING_LEVEL_COM_EPAM:DEBUG}
