@@ -7,12 +7,12 @@ import javax.validation.constraints.NotBlank;
 
 @Value
 @Builder
-public class TaxiPositionRequest {
+public class TaxiPositionMessage {
 
-    @NotBlank
-    String taxiId;
-    @NotBlank
-    String longitude;
-    @NotBlank
-    String latitude;
+  @NotBlank
+  String taxiId;
+  @NotBlank
+  String latitude;
+  @NotBlank
+  String longitude;
 }
