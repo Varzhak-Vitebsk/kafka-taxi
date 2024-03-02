@@ -1,9 +1,9 @@
 package com.epam.taxi.facade.model;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Value;
 
-import javax.validation.constraints.NotBlank;
 
 @Value
 @Builder

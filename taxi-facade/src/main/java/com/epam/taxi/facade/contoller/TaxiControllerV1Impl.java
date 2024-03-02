@@ -20,7 +20,6 @@ public class TaxiControllerV1Impl implements TaxiControllerV1 {
     @Override
     public Mono<ResponseEntity<Void>> addTaxiPosition(TaxiPositionRequest request) {
         log.debug("Received position for taxi: %s".formatted(request.getTaxiId()));
-//        return Mono.just(new ResponseEntity<>(null, HttpStatus.OK));
         return sender.sendMessage(TaxiPositionMessage.builder()
                         .taxiId(request.getTaxiId())
                         .latitude(request.getLatitude())
