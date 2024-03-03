@@ -17,9 +17,9 @@ kafka:
       bootstrapServers: ${KAFKA_PRODUCER_TAXI_DISTANCE_BOOTSTRAP_SERVERS:localhost:9092}
   consumer:
     taxi-position:
-      topic: ${KAFKA_TAXI_POSITION_TOPIC:input-topic}
-      consumer-group-id: ${KAFKA_TAXI_POSITION_TOPIC_CONSUMER_GROUP:taxi-position}
-      bootstrap-servers: ${KAFKA_TAXI_POSITION_BOOTSTRAP_SERVERS:localhost:9092}
+      topic: ${KAFKA_CONSUMER_TAXI_POSITION_TOPIC:input-topic}
+      consumer-group-id: ${KAFKA_CONSUMER_TAXI_POSITION_TOPIC_CONSUMER_GROUP:taxi-position}
+      bootstrap-servers: ${KAFKA_CONSUMER_TAXI_POSITION_BOOTSTRAP_SERVERS:localhost:9092}
 
 logging:
   level:

@@ -1,6 +1,6 @@
-package com.epam.taxi.tracker.service;
+package com.epam.taxi.logger.service;
 
-import com.epam.taxi.common.model.TaxiPositionMessage;
+import com.epam.taxi.common.model.TaxiDistanceMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -11,11 +11,11 @@ import reactor.kafka.receiver.ReceiverRecord;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class PositionMessageReceiver {
+public class DistanceMessageReceiver {
 
-  private final KafkaReceiver<String, TaxiPositionMessage> receiver;
+  private final KafkaReceiver<String, TaxiDistanceMessage> receiver;
 
-  public Flux<TaxiPositionMessage> receiveTaxiPosition() {
+  public Flux<TaxiDistanceMessage> receiveTaxiDistance() {
     return receiver.receive()
         .map(record -> {
           log.info("Message received successfully from topic {} for taxi {}", record.topic(), record.key());
@@ -24,7 +24,7 @@ public class PositionMessageReceiver {
         })
         .onErrorContinue((throwable, record) -> {
           log.error("Failed to read message: {}", throwable.getMessage());
-          ((ReceiverRecord<String,TaxiPositionMessage>) record).receiverOffset().acknowledge();
+          ((ReceiverRecord<String,TaxiDistanceMessage>) record).receiverOffset().acknowledge();
         });
   }
 

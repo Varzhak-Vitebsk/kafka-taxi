@@ -99,15 +99,59 @@ services:
       - kafka2
       - init-kafka
 
-  taxi-tracker-consumer:
-    container_name: taxi-tracker-consumer
+  taxi-tracker-consumer1:
+    container_name: taxi-tracker-consumer1
     build:
       context: taxi-tracker-consumer
       dockerfile: Dockerfile
     image: taxi-tracker-consumer:latest
     environment:
       - KAFKA_PRODUCER_TAXI_DISTANCE_BOOTSTRAP_SERVERS=kafka1:29092
-      - KAFKA_TAXI_POSITION_BOOTSTRAP_SERVERS=kafka1:29092
+      - KAFKA_CONSUMER_POSITION_BOOTSTRAP_SERVERS=kafka1:29092
+    depends_on:
+      - kafka1
+      - kafka3
+      - kafka2
+      - init-kafka
+
+  taxi-tracker-consumer2:
+    container_name: taxi-tracker-consumer2
+    build:
+      context: taxi-tracker-consumer
+      dockerfile: Dockerfile
+    image: taxi-tracker-consumer:latest
+    environment:
+      - KAFKA_PRODUCER_TAXI_DISTANCE_BOOTSTRAP_SERVERS=kafka1:29092
+      - KAFKA_CONSUMER_TAXI_POSITION_BOOTSTRAP_SERVERS=kafka1:29092
+    depends_on:
+      - kafka1
+      - kafka3
+      - kafka2
+      - init-kafka
+
+  taxi-tracker-consumer3:
+    container_name: taxi-tracker-consumer3
+    build:
+      context: taxi-tracker-consumer
+      dockerfile: Dockerfile
+    image: taxi-tracker-consumer:latest
+    environment:
+      - KAFKA_PRODUCER_TAXI_DISTANCE_BOOTSTRAP_SERVERS=kafka1:29092
+      - KAFKA_CONSUMER_TAXI_POSITION_BOOTSTRAP_SERVERS=kafka1:29092
+    depends_on:
+      - kafka1
+      - kafka3
+      - kafka2
+      - init-kafka
+
+  taxi-logging-consumer:
+    container_name: taxi-logging-consumer
+    build:
+      context: taxi-logging-consumer
+      dockerfile: Dockerfile
+    image: taxi-logging-consumer:latest
+    environment:
+      - KAFKA_CONSUMER_TAXI_DISTANCE_BOOTSTRAP_SERVERS=kafka1:29092
     depends_on:
       - kafka1
       - kafka3
