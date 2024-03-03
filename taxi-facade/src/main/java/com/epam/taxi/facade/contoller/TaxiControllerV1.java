@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import reactor.core.publisher.Mono;
 
-
 @RequestMapping(path = "/api/public/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 @Validated
 public interface TaxiControllerV1 {

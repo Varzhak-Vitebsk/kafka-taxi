@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @SpringBootApplication
 @ConfigurationPropertiesScan(basePackages = "com.epam.taxi")
 public class TaxiTrackerApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(TaxiTrackerApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(TaxiTrackerApplication.class, args);
+  }
 }

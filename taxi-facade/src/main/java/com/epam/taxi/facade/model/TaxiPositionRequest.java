@@ -9,10 +9,10 @@ import lombok.Value;
 @Builder
 public class TaxiPositionRequest {
 
-    @NotBlank
-    String taxiId;
-    @NotBlank
-    String longitude;
-    @NotBlank
-    String latitude;
+  @NotBlank
+  String taxiId;
+  @NotBlank
+  String longitude;
+  @NotBlank
+  String latitude;
 }

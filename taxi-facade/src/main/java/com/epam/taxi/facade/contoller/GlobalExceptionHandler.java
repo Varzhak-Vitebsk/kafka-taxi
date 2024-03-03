@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
   }
 
   private ResponseEntity<ErrorResponse> buildResponse(final String message, HttpStatus httpStatus,
-      HttpServletRequest request) {
+                                                      HttpServletRequest request) {
     final var body = ErrorResponse.builder()
         .timestamp(Instant.now())
         .status(httpStatus.value())

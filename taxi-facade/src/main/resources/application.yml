@@ -12,9 +12,9 @@ spring:
 
 kafka:
   producer:
-    taxi:
-      topic: ${KAFKA_PRODUCER_TAXI_TOPIC:input-topic}
-      bootstrapServers: ${KAFKA_PRODUCER_TAXI_BOOTSTRAP_SERVERS:localhost:9092}
+    taxi-position:
+      topic: ${KAFKA_PRODUCER_TAXI_POSITION_TOPIC:input-topic}
+      bootstrapServers: ${KAFKA_PRODUCER_TAXI_POSITION_BOOTSTRAP_SERVERS:localhost:9092}
 
 logging:
   level:

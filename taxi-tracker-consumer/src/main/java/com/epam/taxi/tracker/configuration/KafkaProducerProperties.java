@@ -1,4 +1,4 @@
-package com.epam.taxi.facade.configuration;
+package com.epam.taxi.tracker.configuration;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

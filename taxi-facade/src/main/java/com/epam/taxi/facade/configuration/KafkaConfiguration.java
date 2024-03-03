@@ -1,6 +1,6 @@
 package com.epam.taxi.facade.configuration;
 
-import com.epam.taxi.facade.model.TaxiPositionMessage;
+import com.epam.taxi.common.model.TaxiPositionMessage;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 @Configuration
 public class KafkaConfiguration {
 
-  public static final String ORDER_SENDER_PROPERTIES = "orderKafkaSenderProperties";
+  public static final String POSITION_SENDER_PROPERTIES = "taxiPositionKafkaConsumerProperties";
   public static final String KAFKA_OBJECT_MAPPER = "kafkaObjectMapper";
 
   @Bean(KAFKA_OBJECT_MAPPER)
@@ -33,15 +33,15 @@ public class KafkaConfiguration {
     return objectMapper;
   }
 
-  @Bean(ORDER_SENDER_PROPERTIES)
-  @ConfigurationProperties(value = "kafka.producer.taxi")
+  @Bean(POSITION_SENDER_PROPERTIES)
+  @ConfigurationProperties(value = "kafka.producer.taxi-position")
   public KafkaProducerProperties orderKafkaSenderProperties() {
     return new KafkaProducerProperties();
   }
 
   @Bean
-  public KafkaSender<String, TaxiPositionMessage> orderKafkaSender(
-      @Qualifier(ORDER_SENDER_PROPERTIES) KafkaProducerProperties producerProperties,
+  public KafkaSender<String, TaxiPositionMessage> taxiPositionKafkaSender(
+      @Qualifier(POSITION_SENDER_PROPERTIES) KafkaProducerProperties producerProperties,
       @Qualifier(KAFKA_OBJECT_MAPPER) ObjectMapper mapper) {
     SenderOptions<String, TaxiPositionMessage> senderOptions = SenderOptions.<String, TaxiPositionMessage>create(
             buildProducerConfigs(producerProperties)).maxInFlight(1024)

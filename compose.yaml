@@ -89,8 +89,25 @@ services:
       context: taxi-facade
       dockerfile: Dockerfile
     image: taxi-facade:latest
+    environment:
+      - KAFKA_PRODUCER_TAXI_POSITION_BOOTSTRAP_SERVERS=kafka1:29092
     ports:
-      - "8080:9080"
+      - "8080:8080"
+    depends_on:
+      - kafka1
+      - kafka3
+      - kafka2
+      - init-kafka
+
+  taxi-tracker-consumer:
+    container_name: taxi-tracker-consumer
+    build:
+      context: taxi-tracker-consumer
+      dockerfile: Dockerfile
+    image: taxi-tracker-consumer:latest
+    environment:
+      - KAFKA_PRODUCER_TAXI_DISTANCE_BOOTSTRAP_SERVERS=kafka1:29092
+      - KAFKA_TAXI_POSITION_BOOTSTRAP_SERVERS=kafka1:29092
     depends_on:
       - kafka1
       - kafka3

@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: taxi-tracker
+  jackson:
+    default-property-inclusion: non_null
+  codec:
+    max-in-memory-size: 1048576
+    max-request-size: 4400390
+
+kafka:
+  producer:
+    taxi-distance:
+      topic: ${KAFKA_PRODUCER_TAXI_DISTANCE_TOPIC:output-topic}
+      bootstrapServers: ${KAFKA_PRODUCER_TAXI_DISTANCE_BOOTSTRAP_SERVERS:localhost:9092}
+  consumer:
+    taxi-position:
+      topic: ${KAFKA_TAXI_POSITION_TOPIC:input-topic}
+      consumer-group-id: ${KAFKA_TAXI_POSITION_TOPIC_CONSUMER_GROUP:taxi-position}
+      bootstrap-servers: ${KAFKA_TAXI_POSITION_BOOTSTRAP_SERVERS:localhost:9092}
+
+logging:
+  level:
+    com.epam: ${LOGGING_LEVEL_COM_EPAM:DEBUG}
